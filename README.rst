@@ -27,8 +27,8 @@ This is what is required to use the secrets ansible role.
   secrets role
 * Modify deploy/aws/app.json to have the parameters and vars.yml entries in
   app.json
-* Modify the AppServerRole in deploy/aws/app.json to be able to assume role as
-  the decryptor role
+* Remove AppServerRole and it's associated instance profile and role policies
+  from deploy/aws/app.json and add the instance_profile to the LaunchConfiguration
 * Modify deploy/aws/bespin.yml to include those parameters in params.yml
 * Copy deploy/roles/encryption.yaml and deploy/roles/instance_role.yaml into
   your deploy/roles for each environment

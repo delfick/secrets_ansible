@@ -14,27 +14,7 @@
   }
 
 , "Resources":
-  { "AppServerRole":
-    { "Type": "AWS::IAM::Role"
-    , "Properties":
-      { "Path": { "Ref": "IAMPath" }
-      , "AssumeRolePolicyDocument":
-        {           }
-      , "Policies":
-        [ { "PolicyName": "AppRolePolicy"
-          , "PolicyDocument":
-            { "Statement":
-              [ { "Effect": "Allow"
-                ,  "Action": "sts:AssumeRole"
-                , "Resource": { "Fn::Join": ["", ["arn:aws:iam::", { "Ref": "AccountId" }, ":role/", { "Ref": "AppName" }, "/", { "Ref": "AppName" }, "-decryptor" ] ] }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  , "AppServerLaunchConfiguration":
+  { "AppServerLaunchConfiguration":
     { "Metadata":
       { "AWS::CloudFormation::Init":
         { "configSets":
@@ -74,7 +54,8 @@
       }
     , "Type": "AWS::AutoScaling::LaunchConfiguration"
     , "Properties":
-      {        }
+      { "IamInstanceProfile": "<project>-instance"
+      }
     }
   }
 }
