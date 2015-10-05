@@ -54,7 +54,8 @@
       }
     , "Type": "AWS::AutoScaling::LaunchConfiguration"
     , "Properties":
-      {         }
+      { "IamInstanceProfile": "<project>-instance"
+      }
     }
   }
 }
