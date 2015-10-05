@@ -14,7 +14,7 @@ This means we need to setup:
 
 * A KMS Key for your project
 * An decryptor role that has access to decrypt with the kms key
-* Modify the instance role to be able to assume the decryptor role
+* An instance role that can assume role as the decryptor
 
 Setting it up
 -------------
