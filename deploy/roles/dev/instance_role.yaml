@@ -1,7 +1,7 @@
 ---
 
 roles:
-  rca-splunk/<project>-instance:
+  <project>/<project>-instance:
     description: "Instance role for the <project>"
     make_instance_profile: true
 
