@@ -1,6 +1,24 @@
 Secrets Ansible
 ===============
 
+We want to be able to store secrets in our git repository without storing it in
+clear text in git.
+
+To achieve this we use kms to encrypt values and we store the crypto text
+instead.
+
+Then, on the instance at ansible time we decrypt the crypto text using kms and
+inject the resulting decrypted values as variables in the ansible.
+
+This means we need to setup:
+
+* A KMS Key for your project
+* An decryptor role that has access to decrypt with the kms key
+* An instance role that can assume role as the decryptor
+
+Setting it up
+-------------
+
 This is what is required to use the secrets ansible role.
 
 * Copy deploy/files/ansible/roles/secrets into your ansible roles folder
