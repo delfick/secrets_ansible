@@ -1,0 +1,12 @@
+---
+
+roles:
+  "bamboo/<project>-encryptor":
+    description: "Used to encrypt secrets"
+    allow_to_assume_me:
+      - { iam: "assumed-role/RCA-Prod-Administrator", account: prod, users: [smoore, jon.higgs] }
+
+  "encryption/<project>-decryptor":
+    description: "Used to decrypt secrets"
+    allow_to_assume_me:
+      - { iam: "role/<project>/<project>-instance" }

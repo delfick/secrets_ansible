@@ -1,0 +1,44 @@
+---
+
+bespin:
+  extra_imports:
+    - ["{config_root}", "../files/ansible/roles/secrets/bespin/scripts"]
+
+vars:
+  decryptor_role: "role/encryption/<project>-decryptor"
+
+secret_vars:
+  role: "role/bamboo/<project>-encryptor"
+  keys:
+    - key_one
+    - key_two
+
+########################
+###   ENVIRONMENTS
+########################
+
+environments:
+  prod:
+    account_id: "991147164666"
+    vars:
+      KMSMasterKey: "770b1f01-9f2f-4094-9dc7-c07d9cc0d987"
+
+########################
+###   STACKS
+########################
+
+stacks:
+
+  ########################
+  ###   APP
+  ########################
+
+  app:
+    vars:
+      account_id: "{__environment__.account_id}"
+      decryptor_role: role/encryption/<project>-decryptor
+
+    params_yaml:
+      AccountId: XXX_ACCOUNT_ID_XXX
+      DecryptorRole: XXX_DECRYPTOR_ROLE_XXX
+      EnvironmentName: XXX_ENVIRONMENT_XXX

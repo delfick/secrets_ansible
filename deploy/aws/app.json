@@ -1,0 +1,61 @@
+{ "Parameters":
+  { "AccountId":
+    { "Description": "The account id we're deploying into"
+    , "Type": "String"
+    }
+  , "DecryptorRole":
+    { "Description": "The role to assume when decrypting secrets"
+    , "Type": "String"
+    }
+  , "EnvironmentName":
+    { "Description": "The name we give this environment"
+    , "Type": "String"
+    }
+  }
+
+, "Resources":
+  { "AppServerLaunchConfiguration":
+    { "Metadata":
+      { "AWS::CloudFormation::Init":
+        { "configSets":
+          { "default":
+            [ "createMarker", "markBeginning", "pre-ansible", "extractartifact", "ansible", "markEnd" ]
+          }
+        , "createMarker":
+          {          }
+        , "markBeginning":
+          {          }
+        , "extractartifact":
+          {          }
+        , "pre-ansible":
+          { "files":
+            { "/tmp/vars.yml":
+              { "content":
+                { "Fn::Join":
+                  [ ""
+                  , [ "AppName: ", { "Ref": "AppName" }, "\n"
+                    , "EnvironmentName: ", { "Ref": "EnvironmentName" }, "\n"
+                    , "AccountId: ", { "Ref": "AccountId" }, "\n"
+                    , "DecryptorRole: ", { "Ref": "DecryptorRole" }, "\n"
+                    ]
+                  ]
+                }
+              , "mode": "000400"
+              , "owner": "root"
+              , "group": "root"
+              }
+            }
+          }
+        , "ansible":
+          {          }
+        , "markEnd":
+          {         }
+        }
+      }
+    , "Type": "AWS::AutoScaling::LaunchConfiguration"
+    , "Properties":
+      {         }
+    }
+  }
+}
+
