@@ -25,6 +25,7 @@ This is what is required to use the secrets ansible role.
 * Modify deploy/aws/bespin.yml to include the bespin.extra_imports line
 * Modify deploy/files/ansible/ansible.cfg to include the action_plugins from the
   secrets role
+* Add secrets as a role in deploy/files/ansible/playbook.yml
 * Modify deploy/aws/app.json to have the parameters and vars.yml entries in
   app.json
 * Remove AppServerRole and it's associated instance profile and role policies
